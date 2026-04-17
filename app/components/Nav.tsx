@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const links = [
   { label: "About", href: "#about" },
@@ -23,16 +24,20 @@ export default function Nav() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-gray-100 py-4"
-          : "bg-transparent py-6"
+          ? "bg-white/90 backdrop-blur-md border-b border-gray-100 py-3"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <a
-          href="#"
-          className="text-sm font-semibold tracking-widest uppercase text-[#1a4f6e] hover:opacity-70 transition-opacity"
-        >
-          NL
+        <a href="#" className="hover:opacity-70 transition-opacity">
+          <Image
+            src="/logo.svg"
+            alt="Nastaran Loghmani"
+            width={180}
+            height={32}
+            priority
+            className="h-7 w-auto"
+          />
         </a>
         <ul className="hidden md:flex items-center gap-8">
           {links.map((l) => (

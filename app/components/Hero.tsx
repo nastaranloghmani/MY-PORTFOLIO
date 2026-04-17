@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 function AnimatedGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -118,7 +119,8 @@ export default function Hero() {
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 pt-28 pb-20">
-        <div className="max-w-3xl">
+        <div className="grid md:grid-cols-[1fr_320px] gap-16 items-center">
+        <div>
           {/* Tag */}
           <div className="inline-flex items-center gap-2 mb-8">
             <span className="w-8 h-px bg-[#1a4f6e]" />
@@ -175,6 +177,35 @@ export default function Hero() {
               Get in touch
             </a>
           </div>
+        </div>
+
+        {/* Photo */}
+        <div className="hidden md:flex flex-col items-center gap-4">
+          <div className="relative w-64 h-72 overflow-hidden">
+            <Image
+              src="/nastaran.jpg"
+              alt="Nastaran Loghmani"
+              fill
+              className="object-cover object-top"
+              priority
+            />
+            {/* Subtle frame accent */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                boxShadow: "inset 0 0 0 1px rgba(26,79,110,0.1)",
+              }}
+            />
+          </div>
+          {/* Logo under photo */}
+          <Image
+            src="/logo.svg"
+            alt="Nastaran Loghmani"
+            width={160}
+            height={28}
+            className="opacity-60 h-6 w-auto"
+          />
+        </div>
         </div>
       </div>
 
