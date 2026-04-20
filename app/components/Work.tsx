@@ -63,36 +63,22 @@ function RevealLine({ children, visible, delay = 0, style }: {
   );
 }
 
-function ScreenshotCell({ src, alt, accent, hov }: { src: string; alt: string; accent: string; hov: boolean }) {
-  const [loaded, setLoaded] = useState(false);
-  const [errored, setErrored] = useState(false);
-
+function ScreenshotCell({ src, alt, hov }: { src: string; alt: string; hov: boolean }) {
   return (
-    <div style={{ overflow: "hidden", position: "relative", background: "#f0f0f0" }}>
-      {!loaded && !errored && (
-        <div style={{ position: "absolute", inset: 0, background: "#ebebeb", animation: "pulse 1.5s ease-in-out infinite" }} />
-      )}
-      {errored ? (
-        <div style={{ width: "100%", height: "100%", background: "#f5f5f5", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <div style={{ width: 24, height: 24, borderRadius: "50%", background: accent, opacity: 0.15 }} />
-        </div>
-      ) : (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={src}
-          alt={alt}
-          onLoad={() => setLoaded(true)}
-          onError={() => setErrored(true)}
-          style={{
-            width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "center top",
-            display: "block",
-            opacity: loaded ? 1 : 0,
-            transition: "opacity 0.4s ease",
-            filter: hov ? "brightness(1.03)" : "brightness(1)",
-          }}
-        />
-      )}
+    <div style={{ overflow: "hidden", position: "relative", background: "#e8e8e8", width: "100%", height: "100%" }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={alt}
+        loading="eager"
+        style={{
+          width: "100%", height: "100%",
+          objectFit: "cover", objectPosition: "center top",
+          display: "block",
+          filter: hov ? "brightness(1.05)" : "brightness(1)",
+          transition: "filter 0.4s ease",
+        }}
+      />
     </div>
   );
 }
@@ -133,7 +119,7 @@ function ProjectCard({ p, index }: { p: typeof PROJECTS[0]; index: number }) {
         }}>
           {p.screenshots.map((src, i) => (
             <div key={i} style={{ position: "relative" }}>
-              <ScreenshotCell src={src} alt={`${p.title} section ${i + 1}`} accent={p.accent} hov={hov} />
+              <ScreenshotCell src={src} alt={`${p.title} section ${i + 1}`} hov={hov} />
               {i === 0 && (
                 <div style={{
                   position: "absolute", bottom: 0, left: 0, zIndex: 1,
