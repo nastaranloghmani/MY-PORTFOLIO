@@ -1,57 +1,53 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-function DotGrid() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const rafRef = useRef<number>(0);
+/* Flowing curved paths — adapted to portfolio accent color */
+function FloatingPaths({ position }: { position: number }) {
+  const paths = Array.from({ length: 28 }, (_, i) => ({
+    id: i,
+    d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
+    width: 0.4 + i * 0.025,
+    opacity: 0.04 + i * 0.018,
+  }));
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const GAP = 32;
-    let t = 0;
-
-    function resize() {
-      if (!canvas) return;
-      canvas.width = canvas.offsetWidth * devicePixelRatio;
-      canvas.height = canvas.offsetHeight * devicePixelRatio;
-      ctx!.scale(devicePixelRatio, devicePixelRatio);
-    }
-
-    function draw() {
-      if (!canvas || !ctx) return;
-      const W = canvas.offsetWidth;
-      const H = canvas.offsetHeight;
-      ctx.clearRect(0, 0, W, H);
-      const cols = Math.ceil(W / GAP) + 1;
-      const rows = Math.ceil(H / GAP) + 1;
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const wave = Math.sin((c + r) * 0.35 - t) * 0.5 + 0.5;
-          ctx.beginPath();
-          ctx.arc(c * GAP, r * GAP, 0.8 + wave * 1.8, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(26,79,110,${0.06 + wave * 0.2})`;
-          ctx.fill();
-        }
-      }
-      t += 0.018;
-      rafRef.current = requestAnimationFrame(draw);
-    }
-
-    resize();
-    draw();
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
-    return () => { cancelAnimationFrame(rafRef.current); ro.disconnect(); };
-  }, []);
-
-  return <canvas ref={canvasRef} style={{ width: "100%", height: "100%", display: "block" }} />;
+  return (
+    <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+      <svg
+        style={{ width: "100%", height: "100%" }}
+        viewBox="0 0 696 316"
+        fill="none"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        {paths.map((path) => (
+          <motion.path
+            key={path.id}
+            d={path.d}
+            stroke="#1a4f6e"
+            strokeWidth={path.width}
+            strokeOpacity={path.opacity}
+            initial={{ pathLength: 0.2, opacity: 0 }}
+            animate={{
+              pathLength: 1,
+              opacity: [path.opacity * 0.5, path.opacity, path.opacity * 0.5],
+              pathOffset: [0, 1, 0],
+            }}
+            transition={{
+              duration: 22 + path.id * 0.6,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+        ))}
+      </svg>
+    </div>
+  );
 }
 
-function SplitChars({ text, show, baseDelay = 0, color }: { text: string; show: boolean; baseDelay?: number; color?: string }) {
+function SplitChars({ text, show, baseDelay = 0, color }: {
+  text: string; show: boolean; baseDelay?: number; color?: string;
+}) {
   return (
     <>
       {text.split("").map((ch, i) => (
@@ -60,7 +56,7 @@ function SplitChars({ text, show, baseDelay = 0, color }: { text: string; show: 
           transform: show ? "translateY(0)" : "translateY(70px)",
           opacity: show ? 1 : 0,
           transition: `transform 0.7s cubic-bezier(0.16,1,0.3,1) ${baseDelay + i * 0.022}s, opacity 0.5s ease ${baseDelay + i * 0.022}s`,
-          color: color,
+          color,
         }}>
           {ch === " " ? "\u00a0" : ch}
         </span>
@@ -87,7 +83,14 @@ export default function Hero() {
       margin: "0 auto",
       width: "100%",
       position: "relative",
+      overflow: "hidden",
     }}>
+      {/* Animated path background */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+        <FloatingPaths position={1} />
+        <FloatingPaths position={-1} />
+      </div>
+
       {/* Index label */}
       <div style={{
         paddingTop: 108,
@@ -102,23 +105,11 @@ export default function Hero() {
         001 - Portfolio
       </div>
 
-      {/* Dot grid */}
-      <div style={{
-        flex: 1, position: "relative",
-        minHeight: 200, maxHeight: 340, marginTop: 24,
-        opacity: show ? 1 : 0,
-        transition: "opacity 1.2s ease 0.4s",
-      }}>
-        <DotGrid />
-        <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, height: 80,
-          background: "linear-gradient(to bottom, transparent, #fff)",
-          pointerEvents: "none",
-        }} />
-      </div>
+      {/* Spacer */}
+      <div style={{ flex: 1 }} />
 
       {/* Headline — character split animation */}
-      <div style={{ paddingBottom: 72, position: "relative", zIndex: 1 }}>
+      <div style={{ paddingBottom: 80, position: "relative", zIndex: 1 }}>
         <h1 style={{
           fontSize: "clamp(3.4rem, 7.5vw, 7.5rem)",
           fontWeight: 500,
@@ -126,7 +117,6 @@ export default function Hero() {
           letterSpacing: "-0.035em",
           color: "#0f0f0f",
           margin: "0 0 36px",
-          overflow: "hidden",
         }}>
           <div style={{ overflow: "hidden", display: "block" }}>
             <SplitChars text="Designing products" show={show} baseDelay={0.2} />
