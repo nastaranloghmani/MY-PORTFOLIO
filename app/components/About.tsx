@@ -14,6 +14,24 @@ function useInView() {
   return { ref, visible };
 }
 
+function RevealLine({ children, visible, delay = 0, style }: {
+  children: React.ReactNode;
+  visible: boolean;
+  delay?: number;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <div style={{ overflow: "hidden", ...style }}>
+      <div style={{
+        transform: visible ? "translateY(0)" : "translateY(105%)",
+        transition: `transform 0.75s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
+      }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 const VALUES = ["Research-led", "Systems thinker", "AI-native", "Builds in code"];
 
 export default function About() {
@@ -23,15 +41,14 @@ export default function About() {
     <section id="about" style={{ padding: "120px 32px", maxWidth: 1200, margin: "0 auto", borderTop: "1px solid #e8e8e8" }}>
       <div ref={ref}>
         {/* Header */}
-        <div style={{
-          display: "flex", alignItems: "baseline", gap: 20,
-          marginBottom: 80,
-          opacity: visible ? 1 : 0,
-          transform: visible ? "none" : "translateY(20px)",
-          transition: "opacity 0.6s ease, transform 0.6s ease",
-        }}>
-          <span style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "#aaa" }}>003</span>
-          <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 500, letterSpacing: "-0.025em", margin: 0 }}>About</h2>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 20, marginBottom: 80 }}>
+          <span style={{
+            fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "#aaa",
+            opacity: visible ? 1 : 0, transition: "opacity 0.5s ease",
+          }}>003</span>
+          <RevealLine visible={visible} delay={0.1}>
+            <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 500, letterSpacing: "-0.025em", margin: 0 }}>About</h2>
+          </RevealLine>
         </div>
 
         {/* Content */}
@@ -40,7 +57,7 @@ export default function About() {
           <div style={{
             opacity: visible ? 1 : 0,
             transform: visible ? "none" : "translateY(24px)",
-            transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
+            transition: "opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s",
           }}>
             <div style={{ width: "100%", maxWidth: 340, aspectRatio: "4/5", overflow: "hidden", position: "relative", marginBottom: 32 }}>
               <Image
@@ -51,46 +68,48 @@ export default function About() {
               />
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {VALUES.map(v => (
+              {VALUES.map((v, i) => (
                 <span key={v} style={{
-                  fontSize: 11,
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  color: "#1a4f6e",
-                  border: "1px solid rgba(26,79,110,0.25)",
-                  padding: "5px 10px",
-                }}>
-                  {v}
-                </span>
+                  fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase",
+                  color: "#1a4f6e", border: "1px solid rgba(26,79,110,0.25)", padding: "5px 10px",
+                  opacity: visible ? 1 : 0,
+                  transform: visible ? "none" : "translateY(10px)",
+                  transition: `opacity 0.5s ease ${0.4 + i * 0.08}s, transform 0.5s ease ${0.4 + i * 0.08}s`,
+                }}>{v}</span>
               ))}
             </div>
           </div>
 
           {/* Right: text */}
-          <div style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? "none" : "translateY(24px)",
-            transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
-          }}>
-            <p style={{ fontSize: "clamp(1.2rem, 2vw, 1.45rem)", fontWeight: 400, lineHeight: 1.55, letterSpacing: "-0.01em", color: "#0f0f0f", margin: "0 0 32px" }}>
-              I'm a UX/UI developer who doesn't separate design from code - they're the same thing.
-            </p>
-            <p style={{ fontSize: 15, color: "#555", lineHeight: 1.7, margin: "0 0 24px" }}>
-              I work across research, design, and frontend development. Not because I have to - because I think the best products come from people who understand all three.
-            </p>
-            <p style={{ fontSize: 15, color: "#555", lineHeight: 1.7, margin: "0 0 40px" }}>
-              At MK Innovations in Dubai, I've been doing exactly that - investigating user behavior, translating it into design decisions, and shipping the result.
-            </p>
+          <div>
+            {/* Paragraphs — each line reveals on scroll */}
+            <RevealLine visible={visible} delay={0.2} style={{ marginBottom: 32 }}>
+              <p style={{ fontSize: "clamp(1.2rem, 2vw, 1.45rem)", fontWeight: 400, lineHeight: 1.55, letterSpacing: "-0.01em", color: "#0f0f0f", margin: 0 }}>
+                I'm a UX/UI developer who doesn't separate design from code - they're the same thing.
+              </p>
+            </RevealLine>
 
-            {/* Personal info block */}
-            <div style={{ borderTop: "1px solid #e8e8e8", paddingTop: 28, marginBottom: 28 }}>
+            <RevealLine visible={visible} delay={0.32} style={{ marginBottom: 24 }}>
+              <p style={{ fontSize: 15, color: "#555", lineHeight: 1.7, margin: 0 }}>
+                I work across research, design, and frontend development. Not because I have to - because I think the best products come from people who understand all three.
+              </p>
+            </RevealLine>
+
+            <RevealLine visible={visible} delay={0.44} style={{ marginBottom: 40 }}>
+              <p style={{ fontSize: 15, color: "#555", lineHeight: 1.7, margin: 0 }}>
+                At MK Innovations in Dubai, I've been doing exactly that - investigating user behavior, translating it into design decisions, and shipping the result.
+              </p>
+            </RevealLine>
+
+            {/* Personal info */}
+            <div style={{
+              borderTop: "1px solid #e8e8e8", paddingTop: 28, marginBottom: 28,
+              opacity: visible ? 1 : 0,
+              transition: "opacity 0.6s ease 0.55s",
+            }}>
               <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#aaa", marginBottom: 16 }}>Personal</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                {[
-                  ["Born", "2 May 2005 (age 20)"],
-                  ["Nationality", "Iranian"],
-                  ["Based in", "Dubai, UAE"],
-                ].map(([label, value]) => (
+                {[["Born", "2 May 2005 (age 20)"], ["Nationality", "Iranian"], ["Based in", "Dubai, UAE"]].map(([label, value]) => (
                   <div key={label} style={{ display: "flex", gap: 12 }}>
                     <span style={{ fontSize: 12, color: "#bbb", minWidth: 80, textTransform: "uppercase", letterSpacing: "0.06em", paddingTop: 1 }}>{label}</span>
                     <span style={{ fontSize: 13, color: "#555" }}>{value}</span>
@@ -99,8 +118,12 @@ export default function About() {
               </div>
             </div>
 
-            {/* Education block */}
-            <div style={{ borderTop: "1px solid #e8e8e8", paddingTop: 28 }}>
+            {/* Education */}
+            <div style={{
+              borderTop: "1px solid #e8e8e8", paddingTop: 28,
+              opacity: visible ? 1 : 0,
+              transition: "opacity 0.6s ease 0.65s",
+            }}>
               <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#aaa", marginBottom: 16 }}>Education</div>
               <div style={{ marginBottom: 12 }}>
                 <div style={{ fontSize: 14, fontWeight: 500, color: "#0f0f0f" }}>BSc Software Engineering</div>
