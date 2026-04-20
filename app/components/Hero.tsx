@@ -34,7 +34,7 @@ export default function Hero() {
         transform: show ? "none" : "translateY(8px)",
         transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
       }}>
-        001 — Portfolio
+        001 - Portfolio
       </div>
 
       {/* Main headline */}

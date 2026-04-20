@@ -14,9 +14,20 @@ function useInView() {
 }
 
 const SKILLS = [
-  { group: "Frontend",  items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML/CSS"] },
-  { group: "Design",    items: ["Figma", "UX Research", "Wireframing", "Design Systems", "Prototyping"] },
-  { group: "Tools",     items: ["Git", "GitHub", "Python", "Accessibility", "AI Workflows"] },
+  { group: "Frontend",  items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS", "Responsive Design"] },
+  { group: "Design",    items: ["Figma", "UX Research", "Wireframing", "Design Systems", "Prototyping", "User Testing", "Information Architecture"] },
+  { group: "Tools & Other", items: ["Git", "GitHub", "Python", "AI Workflows", "Vibe Coding", "Accessibility", "Agile/Scrum"] },
+];
+
+const LANGUAGES = [
+  { lang: "Persian", level: "Native" },
+  { lang: "English", level: "B2" },
+  { lang: "German",  level: "B2" },
+];
+
+const CERTIFICATES = [
+  { name: "Meta Front-End Developer Certificate", issuer: "Meta / Coursera", year: "2024" },
+  { name: "BSc Software Engineering", issuer: "University of Europe (UE)", year: "2025 - 2028" },
 ];
 
 export default function Experience() {
@@ -55,7 +66,7 @@ export default function Experience() {
               UX/UI Developer
             </h3>
             <div style={{ fontSize: 16, color: "#1a4f6e", marginBottom: 4, fontWeight: 500 }}>MK Innovations</div>
-            <div style={{ fontSize: 14, color: "#888", marginBottom: 32 }}>Dubai, UAE · 2024 — Present · 8 months</div>
+            <div style={{ fontSize: 14, color: "#888", marginBottom: 32 }}>Dubai, UAE · Sep 2025 - Present</div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e" }} />
               <span style={{ fontSize: 12, color: "#888", letterSpacing: "0.04em" }}>Active</span>
@@ -68,9 +79,10 @@ export default function Experience() {
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {[
-                ["Data Research",      "User behavior analysis, market investigation, turning data into design decisions."],
-                ["UX/UI Design",       "From research to wireframes to high-fidelity interfaces across real products."],
-                ["Frontend Build",     "Shipping production-ready code. The design and the build are one process."],
+                ["Data Research",   "User behavior analysis, market investigation, turning data into design decisions."],
+                ["UX/UI Design",    "From research to wireframes to high-fidelity interfaces across real products."],
+                ["Frontend Build",  "Shipping production-ready code. The design and the build are one process."],
+                ["Vibe Coding",     "Rapid AI-assisted prototyping — translating ideas into working interfaces fast."],
               ].map(([title, desc]) => (
                 <div key={title} style={{ paddingLeft: 16, borderLeft: "2px solid #e8e8e8" }}>
                   <div style={{ fontSize: 13, fontWeight: 500, color: "#0f0f0f", marginBottom: 4 }}>{title}</div>
@@ -85,6 +97,7 @@ export default function Experience() {
         <div style={{
           borderTop: "1px solid #e8e8e8",
           paddingTop: 48,
+          marginBottom: 48,
           opacity: visible ? 1 : 0,
           transform: visible ? "none" : "translateY(20px)",
           transition: "opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s",
@@ -103,6 +116,44 @@ export default function Experience() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Languages + Certificates */}
+        <div style={{
+          borderTop: "1px solid #e8e8e8",
+          paddingTop: 48,
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 64,
+          opacity: visible ? 1 : 0,
+          transform: visible ? "none" : "translateY(20px)",
+          transition: "opacity 0.7s ease 0.35s, transform 0.7s ease 0.35s",
+        }}>
+          {/* Languages */}
+          <div>
+            <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#aaa", marginBottom: 28 }}>Languages</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {LANGUAGES.map(({ lang, level }) => (
+                <div key={lang} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <span style={{ fontSize: 14, fontWeight: 500, color: "#0f0f0f" }}>{lang}</span>
+                  <span style={{ fontSize: 12, color: "#888", background: "#f5f5f5", padding: "2px 10px" }}>{level}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Certificates */}
+          <div>
+            <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#aaa", marginBottom: 28 }}>Certificates & Education</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              {CERTIFICATES.map(({ name, issuer, year }) => (
+                <div key={name} style={{ paddingLeft: 16, borderLeft: "2px solid #e8e8e8" }}>
+                  <div style={{ fontSize: 13, fontWeight: 500, color: "#0f0f0f", marginBottom: 2 }}>{name}</div>
+                  <div style={{ fontSize: 12, color: "#888" }}>{issuer} · {year}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

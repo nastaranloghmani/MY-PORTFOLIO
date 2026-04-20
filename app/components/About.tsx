@@ -82,16 +82,33 @@ export default function About() {
               At MK Innovations in Dubai, I've been doing exactly that — investigating user behavior, translating it into design decisions, and shipping the result.
             </p>
 
+            {/* Personal info block */}
+            <div style={{ borderTop: "1px solid #e8e8e8", paddingTop: 28, marginBottom: 28 }}>
+              <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#aaa", marginBottom: 16 }}>Personal</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {[
+                  ["Born", "2 May 2005 (age 20)"],
+                  ["Nationality", "Iranian"],
+                  ["Based in", "Dubai, UAE"],
+                ].map(([label, value]) => (
+                  <div key={label} style={{ display: "flex", gap: 12 }}>
+                    <span style={{ fontSize: 12, color: "#bbb", minWidth: 80, textTransform: "uppercase", letterSpacing: "0.06em", paddingTop: 1 }}>{label}</span>
+                    <span style={{ fontSize: 13, color: "#555" }}>{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Education block */}
             <div style={{ borderTop: "1px solid #e8e8e8", paddingTop: 28 }}>
               <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#aaa", marginBottom: 16 }}>Education</div>
               <div style={{ marginBottom: 12 }}>
                 <div style={{ fontSize: 14, fontWeight: 500, color: "#0f0f0f" }}>BSc Software Engineering</div>
-                <div style={{ fontSize: 13, color: "#888", marginTop: 2 }}>University of Europe (UE) · 2025–2028</div>
+                <div style={{ fontSize: 13, color: "#888", marginTop: 2 }}>University of Europe (UE) · 2025 - 2028</div>
               </div>
               <div>
                 <div style={{ fontSize: 14, fontWeight: 500, color: "#0f0f0f" }}>Meta Front-End Developer Certificate</div>
-                <div style={{ fontSize: 13, color: "#888", marginTop: 2 }}>Professional Certification · 2024</div>
+                <div style={{ fontSize: 13, color: "#888", marginTop: 2 }}>Meta / Coursera · 2024</div>
               </div>
             </div>
           </div>

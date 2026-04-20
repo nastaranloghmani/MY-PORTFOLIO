@@ -52,7 +52,7 @@ export default function Contact() {
           </p>
 
           <a
-            href="mailto:nastaran@mkinnovations.ae"
+            href="mailto:loghmaninastaran@gmail.com"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -70,7 +70,7 @@ export default function Contact() {
             onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#1a4f6e"; el.style.borderColor = "#1a4f6e"; }}
             onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#0f0f0f"; el.style.borderColor = "#0f0f0f"; }}
           >
-            nastaran@mkinnovations.ae
+            loghmaninastaran@gmail.com
             <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
               <path d="M0 5h13M9 1l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -104,7 +104,7 @@ export default function Contact() {
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/nastaranloghmani"
+              href="https://www.linkedin.com/in/nastaran-l-5a40b2262"
               target="_blank"
               rel="noopener noreferrer"
               style={{ fontSize: 12, color: "#888", letterSpacing: "0.04em", textDecoration: "none", transition: "color 0.2s" }}
