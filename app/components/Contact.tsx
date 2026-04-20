@@ -70,7 +70,7 @@ export default function Contact() {
           </RevealLine>
         </div>
 
-        {/* Main CTA — word-by-word reveal */}
+        {/* Main CTA - word-by-word reveal */}
         <div style={{ marginBottom: 80 }}>
           <p style={{
             fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)",

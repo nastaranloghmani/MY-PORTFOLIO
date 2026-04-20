@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 const PROJECTS = [
   {
     num: "01",
-    title: "ZennTech — AI SaaS Platform",
+    title: "ZennTech - AI SaaS Platform",
     role: "UX Research · UI Design · Frontend",
     year: "2025",
     desc: "Full product design and build for an AI-powered enterprise SaaS suite. Six interconnected products including virtual assistants, voice AI, and content generation tools.",
@@ -15,7 +15,7 @@ const PROJECTS = [
   },
   {
     num: "02",
-    title: "Luxor PMG — Luxury Retail",
+    title: "Luxor PMG - Luxury Retail",
     role: "UI Design · Brand Design · Frontend",
     year: "2025",
     desc: "Bespoke digital experience for a Dubai luxury atelier specialising in fine jewellery, Swiss timepieces, and precious metals for high-net-worth clients.",
@@ -25,10 +25,10 @@ const PROJECTS = [
   },
   {
     num: "03",
-    title: "MKHA — Luxury Car Rental",
+    title: "MKHA - Luxury Car Rental",
     role: "UI Design · Frontend Development",
     year: "2025",
-    desc: "High-end rental platform for exotic and premium vehicles in Dubai. Designed to reflect the lifestyle positioning of the brand — Ferraris, Lamborghinis, concierge service.",
+    desc: "High-end rental platform for exotic and premium vehicles in Dubai. Designed to reflect the lifestyle positioning of the brand - Ferraris, Lamborghinis, concierge service.",
     accent: "#3d2a6e",
     url: "https://mkharentacar.ae/",
     screenshots: ["/mkha-1.png", "/mkha-2.png", "/mkha-3.png", "/mkha-4.png"],
@@ -100,7 +100,7 @@ function ProjectCard({ p, index }: { p: typeof PROJECTS[0]; index: number }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={src}
-                alt={`${p.title} — section ${i + 1}`}
+                alt={`${p.title} - section ${i + 1}`}
                 loading="lazy"
                 style={{
                   width: "100%",

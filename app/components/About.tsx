@@ -82,7 +82,7 @@ export default function About() {
 
           {/* Right: text */}
           <div>
-            {/* Paragraphs — each line reveals on scroll */}
+            {/* Paragraphs - each line reveals on scroll */}
             <RevealLine visible={visible} delay={0.2} style={{ marginBottom: 32 }}>
               <p style={{ fontSize: "clamp(1.2rem, 2vw, 1.45rem)", fontWeight: 400, lineHeight: 1.55, letterSpacing: "-0.01em", color: "#0f0f0f", margin: 0 }}>
                 I'm a UX/UI developer who doesn't separate design from code - they're the same thing.

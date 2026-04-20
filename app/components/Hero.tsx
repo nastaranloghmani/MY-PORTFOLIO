@@ -69,7 +69,7 @@ export default function Hero() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    // No delay — show immediately on mount
+    // No delay - show immediately on mount
     setShow(true);
   }, []);
 
