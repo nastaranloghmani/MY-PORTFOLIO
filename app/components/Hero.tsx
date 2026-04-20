@@ -3,13 +3,12 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-/* Flowing curved paths — adapted to portfolio accent color */
 function FloatingPaths({ position }: { position: number }) {
-  const paths = Array.from({ length: 28 }, (_, i) => ({
+  const paths = Array.from({ length: 24 }, (_, i) => ({
     id: i,
     d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
     width: 0.4 + i * 0.025,
-    opacity: 0.04 + i * 0.018,
+    opacity: 0.05 + i * 0.02,
   }));
 
   return (
@@ -18,7 +17,7 @@ function FloatingPaths({ position }: { position: number }) {
         style={{ width: "100%", height: "100%" }}
         viewBox="0 0 696 316"
         fill="none"
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="xMinYMin meet"
       >
         {paths.map((path) => (
           <motion.path
@@ -27,16 +26,17 @@ function FloatingPaths({ position }: { position: number }) {
             stroke="#1a4f6e"
             strokeWidth={path.width}
             strokeOpacity={path.opacity}
-            initial={{ pathLength: 0.2, opacity: 0 }}
+            initial={{ pathLength: 0.3, opacity: path.opacity }}
             animate={{
               pathLength: 1,
-              opacity: [path.opacity * 0.5, path.opacity, path.opacity * 0.5],
+              opacity: [path.opacity * 0.6, path.opacity, path.opacity * 0.6],
               pathOffset: [0, 1, 0],
             }}
             transition={{
-              duration: 22 + path.id * 0.6,
+              duration: 20 + path.id * 0.7,
               repeat: Infinity,
               ease: "linear",
+              delay: 0,
             }}
           />
         ))}
@@ -69,8 +69,8 @@ export default function Hero() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setShow(true), 120);
-    return () => clearTimeout(t);
+    // No delay — show immediately on mount
+    setShow(true);
   }, []);
 
   return (
@@ -85,12 +85,6 @@ export default function Hero() {
       position: "relative",
       overflow: "hidden",
     }}>
-      {/* Animated path background */}
-      <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-        <FloatingPaths position={1} />
-        <FloatingPaths position={-1} />
-      </div>
-
       {/* Index label */}
       <div style={{
         paddingTop: 108,
@@ -100,15 +94,34 @@ export default function Hero() {
         color: "#aaa",
         position: "relative", zIndex: 1,
         opacity: show ? 1 : 0,
-        transition: "opacity 0.7s ease 0.1s",
+        transition: "opacity 0.4s ease",
       }}>
         001 - Portfolio
+      </div>
+
+      {/* Paths originate from just below the label and fill downward */}
+      <div style={{
+        position: "absolute",
+        top: 120,      // starts right where the label sits
+        left: -32,
+        right: -32,
+        bottom: 0,
+        zIndex: 0,
+      }}>
+        <FloatingPaths position={1} />
+        <FloatingPaths position={-1} />
+        {/* Fade bottom so paths blend into headline */}
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: 200,
+          background: "linear-gradient(to bottom, transparent, #fff)",
+          pointerEvents: "none",
+        }} />
       </div>
 
       {/* Spacer */}
       <div style={{ flex: 1 }} />
 
-      {/* Headline — character split animation */}
+      {/* Headline */}
       <div style={{ paddingBottom: 80, position: "relative", zIndex: 1 }}>
         <h1 style={{
           fontSize: "clamp(3.4rem, 7.5vw, 7.5rem)",
@@ -119,10 +132,10 @@ export default function Hero() {
           margin: "0 0 36px",
         }}>
           <div style={{ overflow: "hidden", display: "block" }}>
-            <SplitChars text="Designing products" show={show} baseDelay={0.2} />
+            <SplitChars text="Designing products" show={show} baseDelay={0.05} />
           </div>
           <div style={{ overflow: "hidden", display: "block" }}>
-            <SplitChars text="that feel right." show={show} baseDelay={0.55} color="#1a4f6e" />
+            <SplitChars text="that feel right." show={show} baseDelay={0.35} color="#1a4f6e" />
           </div>
         </h1>
 
@@ -130,7 +143,7 @@ export default function Hero() {
           display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 24,
           opacity: show ? 1 : 0,
           transform: show ? "none" : "translateY(16px)",
-          transition: "opacity 0.8s ease 1.1s, transform 0.8s ease 1.1s",
+          transition: "opacity 0.6s ease 0.7s, transform 0.6s ease 0.7s",
         }}>
           <p style={{ fontSize: 15, color: "#888", margin: 0, letterSpacing: "0.01em", lineHeight: 1.6 }}>
             Nastaran Loghmani - UX/UI Developer &amp; Product Designer
@@ -159,7 +172,7 @@ export default function Hero() {
         position: "absolute", bottom: 0, left: 0, right: 0, height: 1,
         background: "#e8e8e8",
         opacity: show ? 1 : 0,
-        transition: "opacity 0.8s ease 1.4s",
+        transition: "opacity 0.5s ease 1s",
       }} />
     </section>
   );
