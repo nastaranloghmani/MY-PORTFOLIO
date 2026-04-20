@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const GH = "https://raw.githubusercontent.com/nastaranloghmani/MY-PORTFOLIO/main/public";
+
 const PROJECTS = [
   {
     num: "01",
@@ -11,7 +13,7 @@ const PROJECTS = [
     desc: "Full product design and build for an AI-powered enterprise SaaS suite. Six interconnected products including virtual assistants, voice AI, and content generation tools.",
     accent: "#1a4f6e",
     url: "https://zenntech-ious.onrender.com/",
-    screenshots: ["/zenntech-1.png", "/zenntech-2.png", "/zenntech-3.png", "/zenntech-4.png"],
+    screenshots: [`${GH}/zenntech-1.png`, `${GH}/zenntech-2.png`, `${GH}/zenntech-3.png`, `${GH}/zenntech-4.png`],
   },
   {
     num: "02",
@@ -21,7 +23,7 @@ const PROJECTS = [
     desc: "Bespoke digital experience for a Dubai luxury atelier specialising in fine jewellery, Swiss timepieces, and precious metals for high-net-worth clients.",
     accent: "#8a6a3a",
     url: "https://luxorpmg.com/",
-    screenshots: ["/luxor-1.png", "/luxor-2.png", "/luxor-3.png", "/luxor-4.png"],
+    screenshots: [`${GH}/luxor-1.png`, `${GH}/luxor-2.png`, `${GH}/luxor-3.png`, `${GH}/luxor-4.png`],
   },
   {
     num: "03",
@@ -31,7 +33,7 @@ const PROJECTS = [
     desc: "High-end rental platform for exotic and premium vehicles in Dubai. Designed to reflect the lifestyle positioning of the brand - Ferraris, Lamborghinis, concierge service.",
     accent: "#3d2a6e",
     url: "https://mkharentacar.ae/",
-    screenshots: ["/mkha-1.png", "/mkha-2.png", "/mkha-3.png", "/mkha-4.png"],
+    screenshots: [`${GH}/mkha-1.png`, `${GH}/mkha-2.png`, `${GH}/mkha-3.png`, `${GH}/mkha-4.png`],
   },
 ];
 
