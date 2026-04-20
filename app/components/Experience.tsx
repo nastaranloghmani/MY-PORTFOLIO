@@ -14,7 +14,7 @@ function useInView() {
 }
 
 const SKILLS = [
-  { group: "Frontend",  items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS", "Responsive Design"] },
+  { group: "Frontend",  items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS", "Bootstrap", "Responsive Design"] },
   { group: "Design",    items: ["Figma", "UX Research", "Wireframing", "Design Systems", "Prototyping", "User Testing", "Information Architecture"] },
   { group: "Tools & Other", items: ["Git", "GitHub", "Python", "AI Workflows", "Vibe Coding", "Accessibility", "Agile/Scrum"] },
 ];
@@ -26,8 +26,10 @@ const LANGUAGES = [
 ];
 
 const CERTIFICATES = [
-  { name: "Meta Front-End Developer Certificate", issuer: "Meta / Coursera", year: "2024" },
   { name: "BSc Software Engineering", issuer: "University of Europe (UE)", year: "2025 - 2028" },
+  { name: "Meta Front-End Developer Certificate", issuer: "Meta / Coursera", year: "2024" },
+  { name: "Web Development Basics", issuer: "HTML, CSS, JavaScript fundamentals", year: "Nov 2023" },
+  { name: "Python Programming Course", issuer: "Syntax, data types, functions, I/O", year: "Oct 2023" },
 ];
 
 export default function Experience() {
