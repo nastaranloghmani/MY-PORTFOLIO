@@ -11,8 +11,7 @@ const PROJECTS = [
     desc: "Full product design and build for an AI-powered enterprise SaaS suite. Six interconnected products including virtual assistants, voice AI, and content generation tools.",
     accent: "#1a4f6e",
     url: "https://zenntech-ious.onrender.com/",
-    screenshot: "https://image.thum.io/get/width/1400/fullpage/https://zenntech-ious.onrender.com/",
-    crops: ["0% 0%", "0% 28%", "0% 56%", "0% 84%"],
+    screenshots: ["/zenntech-1.png", "/zenntech-2.png", "/zenntech-3.png", "/zenntech-4.png"],
   },
   {
     num: "02",
@@ -22,8 +21,7 @@ const PROJECTS = [
     desc: "Bespoke digital experience for a Dubai luxury atelier specialising in fine jewellery, Swiss timepieces, and precious metals for high-net-worth clients.",
     accent: "#8a6a3a",
     url: "https://luxorpmg.com/",
-    screenshot: "https://image.thum.io/get/width/1400/fullpage/https://luxorpmg.com/",
-    crops: ["0% 0%", "0% 28%", "0% 56%", "0% 84%"],
+    screenshots: ["/luxor-1.png", "/luxor-2.png", "/luxor-3.png", "/luxor-4.png"],
   },
   {
     num: "03",
@@ -33,8 +31,12 @@ const PROJECTS = [
     desc: "High-end rental platform for exotic and premium vehicles in Dubai. Designed to reflect the lifestyle positioning of the brand — Ferraris, Lamborghinis, concierge service.",
     accent: "#3d2a6e",
     url: "https://mkharentacar.ae/",
-    screenshot: "https://image.thum.io/get/width/1400/fullpage/https://mkharentacar.ae/",
-    crops: ["0% 0%", "0% 28%", "0% 56%", "0% 84%"],
+    screenshots: [
+      "https://image.thum.io/get/width/1400/crop/900/https://mkharentacar.ae/",
+      "https://image.thum.io/get/width/1400/crop/900/viewPort/1400,500/https://mkharentacar.ae/",
+      "https://image.thum.io/get/width/1400/fullpage/https://mkharentacar.ae/",
+      "https://image.thum.io/get/width/1400/fullpage/https://mkharentacar.ae/",
+    ],
   },
 ];
 
@@ -98,24 +100,23 @@ function ProjectCard({ p, index }: { p: typeof PROJECTS[0]; index: number }) {
           transform: hov ? "scale(1.01)" : "scale(1)",
           transition: "transform 0.5s ease",
         }}>
-          {p.crops.map((pos, i) => (
+          {p.screenshots.map((src, i) => (
             <div key={i} style={{ overflow: "hidden", position: "relative", background: "#e8e8e8" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={p.screenshot}
+                src={src}
                 alt={`${p.title} — section ${i + 1}`}
                 loading="lazy"
                 style={{
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
-                  objectPosition: pos,
+                  objectPosition: "center top",
                   display: "block",
                   filter: hov ? "brightness(1.03)" : "brightness(1)",
                   transition: "filter 0.4s ease",
                 }}
               />
-              {/* Accent bar on first cell only, on hover */}
               {i === 0 && (
                 <div style={{
                   position: "absolute", bottom: 0, left: 0,
