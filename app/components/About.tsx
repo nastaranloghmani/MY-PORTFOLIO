@@ -1,98 +1,97 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
-const traits = [
-  { label: "Research-led", desc: "Every design decision starts with understanding people, not assumptions." },
-  { label: "Systems thinker", desc: "I see beyond screens — to flows, structures, and how pieces connect." },
-  { label: "AI-native", desc: "I use AI as a collaborator, not a shortcut. It sharpens my thinking." },
-];
-
-export default function About() {
+function useInView() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-
   useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.15 }
-    );
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.15 });
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
+  return { ref, visible };
+}
+
+const VALUES = ["Research-led", "Systems thinker", "AI-native", "Builds in code"];
+
+export default function About() {
+  const { ref, visible } = useInView();
 
   return (
-    <section id="about" className="py-32 bg-white" ref={ref}>
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-20 items-start">
-          {/* Left */}
-          <div
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? "none" : "translateY(30px)",
-              transition: "opacity 0.7s ease, transform 0.7s ease",
-            }}
-          >
-            <span className="section-divider mb-6" />
-            <h2 className="text-4xl font-semibold tracking-tight text-gray-900 mb-8 leading-snug">
-              Not just a developer.
-              <br />
-              <span className="gradient-text">A product thinker.</span>
-            </h2>
-            <p className="text-gray-500 leading-relaxed mb-6 text-base">
-              I started with code. Then I fell in love with the question behind the code:
-              <em className="text-gray-700 not-italic font-medium"> why does this need to exist, and who is it for?</em>
-            </p>
-            <p className="text-gray-500 leading-relaxed mb-6 text-base">
-              At MK Innovations in Dubai, I work across the full spectrum — conducting user research,
-              translating data into design decisions, building interfaces, and shipping real products.
-              I call this being a <span className="text-[#1a4f6e] font-medium">vibe coder</span>: someone who
-              feels the product, not just writes it.
-            </p>
-            <p className="text-gray-500 leading-relaxed text-base">
-              My approach is minimal by default, intentional by design, and driven by what
-              actually solves a problem — not what looks impressive in a Figma file.
-            </p>
+    <section id="about" style={{ padding: "120px 32px", maxWidth: 1200, margin: "0 auto", borderTop: "1px solid #e8e8e8" }}>
+      <div ref={ref}>
+        {/* Header */}
+        <div style={{
+          display: "flex", alignItems: "baseline", gap: 20,
+          marginBottom: 80,
+          opacity: visible ? 1 : 0,
+          transform: visible ? "none" : "translateY(20px)",
+          transition: "opacity 0.6s ease, transform 0.6s ease",
+        }}>
+          <span style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "#aaa" }}>003</span>
+          <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 500, letterSpacing: "-0.025em", margin: 0 }}>About</h2>
+        </div>
+
+        {/* Content */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
+          {/* Left: photo + values */}
+          <div style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? "none" : "translateY(24px)",
+            transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
+          }}>
+            <div style={{ width: "100%", maxWidth: 340, aspectRatio: "4/5", overflow: "hidden", position: "relative", marginBottom: 32 }}>
+              <Image
+                src="/nastaran.jpg"
+                alt="Nastaran Loghmani"
+                fill
+                style={{ objectFit: "cover", objectPosition: "top" }}
+              />
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {VALUES.map(v => (
+                <span key={v} style={{
+                  fontSize: 11,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "#1a4f6e",
+                  border: "1px solid rgba(26,79,110,0.25)",
+                  padding: "5px 10px",
+                }}>
+                  {v}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Right — trait cards */}
-          <div
-            className="flex flex-col gap-5"
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? "none" : "translateY(30px)",
-              transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
-            }}
-          >
-            {traits.map((t, i) => (
-              <div
-                key={t.label}
-                className="group border border-gray-100 p-6 hover:border-[#1a4f6e]/30 hover:shadow-sm transition-all duration-300"
-                style={{
-                  transitionDelay: `${i * 80}ms`,
-                }}
-              >
-                <div className="flex items-start gap-4">
-                  <span className="mt-1 w-1.5 h-1.5 rounded-full bg-[#1a4f6e] flex-shrink-0 group-hover:scale-150 transition-transform" />
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-900 mb-1 tracking-wide">
-                      {t.label}
-                    </h3>
-                    <p className="text-sm text-gray-500 leading-relaxed">{t.desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+          {/* Right: text */}
+          <div style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? "none" : "translateY(24px)",
+            transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
+          }}>
+            <p style={{ fontSize: "clamp(1.2rem, 2vw, 1.45rem)", fontWeight: 400, lineHeight: 1.55, letterSpacing: "-0.01em", color: "#0f0f0f", margin: "0 0 32px" }}>
+              I'm a UX/UI developer who doesn't separate design from code — they're the same thing.
+            </p>
+            <p style={{ fontSize: 15, color: "#555", lineHeight: 1.7, margin: "0 0 24px" }}>
+              I work across research, design, and frontend development. Not because I have to — because I think the best products come from people who understand all three.
+            </p>
+            <p style={{ fontSize: 15, color: "#555", lineHeight: 1.7, margin: "0 0 40px" }}>
+              At MK Innovations in Dubai, I've been doing exactly that — investigating user behavior, translating it into design decisions, and shipping the result.
+            </p>
 
-            {/* Stat */}
-            <div className="mt-4 pt-6 border-t border-gray-100 grid grid-cols-2 gap-6">
-              <div>
-                <div className="text-3xl font-semibold text-[#1a4f6e] mb-1">8</div>
-                <div className="text-xs text-gray-400 uppercase tracking-widest">Months experience</div>
+            {/* Education block */}
+            <div style={{ borderTop: "1px solid #e8e8e8", paddingTop: 28 }}>
+              <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#aaa", marginBottom: 16 }}>Education</div>
+              <div style={{ marginBottom: 12 }}>
+                <div style={{ fontSize: 14, fontWeight: 500, color: "#0f0f0f" }}>BSc Software Engineering</div>
+                <div style={{ fontSize: 13, color: "#888", marginTop: 2 }}>University of Europe (UE) · 2025–2028</div>
               </div>
               <div>
-                <div className="text-3xl font-semibold text-[#1a4f6e] mb-1">3×</div>
-                <div className="text-xs text-gray-400 uppercase tracking-widest">Disciplines in one</div>
+                <div style={{ fontSize: 14, fontWeight: 500, color: "#0f0f0f" }}>Meta Front-End Developer Certificate</div>
+                <div style={{ fontSize: 13, color: "#888", marginTop: 2 }}>Professional Certification · 2024</div>
               </div>
             </div>
           </div>

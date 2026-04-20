@@ -1,25 +1,23 @@
+import Cursor from "./components/Cursor";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
+import Work from "./components/Work";
 import About from "./components/About";
 import Experience from "./components/Experience";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Signature from "./components/Signature";
-import Footer from "./components/Footer";
+import Contact from "./components/Contact";
 
 export default function Home() {
   return (
     <>
+      <Cursor />
       <Nav />
       <main>
         <Hero />
+        <Work />
         <About />
         <Experience />
-        <Skills />
-        <Projects />
-        <Signature />
+        <Contact />
       </main>
-      <Footer />
     </>
   );
 }

@@ -4,59 +4,45 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const links = [
-  { label: "About", href: "#about" },
+  { label: "Work",       href: "#work" },
+  { label: "About",      href: "#about" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact",    href: "#contact" },
 ];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-gray-100 py-3"
-          : "bg-transparent py-5"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="hover:opacity-70 transition-opacity">
-          <Image
-            src="/logo.svg"
-            alt="Nastaran Loghmani"
-            width={180}
-            height={32}
-            priority
-            className="h-7 w-auto"
-          />
+    <nav style={{
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+      padding: scrolled ? "16px 0" : "28px 0",
+      background: scrolled ? "rgba(255,255,255,0.92)" : "transparent",
+      backdropFilter: scrolled ? "blur(12px)" : "none",
+      borderBottom: scrolled ? "1px solid #e8e8e8" : "1px solid transparent",
+      transition: "all 0.4s ease",
+    }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <a href="#" aria-label="Home">
+          <Image src="/logo.svg" alt="Nastaran Loghmani" width={200} height={24} style={{ height: 20, width: "auto", opacity: 0.9 }} priority />
         </a>
-        <ul className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="text-sm text-gray-500 hover:text-[#1a4f6e] transition-colors tracking-wide"
-              >
+        <ul style={{ display: "flex", gap: 40, listStyle: "none", margin: 0, padding: 0 }}>
+          {links.map(l => (
+            <li key={l.href} className="hidden md:block">
+              <a href={l.href} style={{ fontSize: 13, letterSpacing: "0.04em", color: "#555", textDecoration: "none", transition: "color 0.2s" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "#0f0f0f")}
+                onMouseLeave={e => (e.currentTarget.style.color = "#555")}>
                 {l.label}
               </a>
             </li>
           ))}
         </ul>
-        <a
-          href="mailto:loghmaninastaran@gmail.com"
-          className="hidden md:inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase border border-[#1a4f6e] text-[#1a4f6e] px-4 py-2 hover:bg-[#1a4f6e] hover:text-white transition-all duration-300"
-        >
-          Hire Me
-        </a>
       </div>
     </nav>
   );
