@@ -31,12 +31,7 @@ const PROJECTS = [
     desc: "High-end rental platform for exotic and premium vehicles in Dubai. Designed to reflect the lifestyle positioning of the brand — Ferraris, Lamborghinis, concierge service.",
     accent: "#3d2a6e",
     url: "https://mkharentacar.ae/",
-    screenshots: [
-      "https://image.thum.io/get/width/1400/crop/900/https://mkharentacar.ae/",
-      "https://image.thum.io/get/width/1400/crop/900/viewPort/1400,500/https://mkharentacar.ae/",
-      "https://image.thum.io/get/width/1400/fullpage/https://mkharentacar.ae/",
-      "https://image.thum.io/get/width/1400/fullpage/https://mkharentacar.ae/",
-    ],
+    screenshots: ["/mkha-1.png", "/mkha-2.png", "/mkha-3.png", "/mkha-4.png"],
   },
 ];
 
