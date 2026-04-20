@@ -11,6 +11,7 @@ const PROJECTS = [
     desc: "End-to-end product design and build for an internal analytics platform. Led research, designed the system, shipped the code.",
     bg: "#f0f4f8",
     accent: "#1a4f6e",
+    url: "https://zenntech-ious.onrender.com/",
   },
   {
     num: "02",
@@ -20,6 +21,7 @@ const PROJECTS = [
     desc: "A repeatable research framework for a B2B product team - from user interviews to a design system used across products.",
     bg: "#f5f3f0",
     accent: "#2a5c3f",
+    url: "https://luxorpmg.com/",
   },
   {
     num: "03",
@@ -29,6 +31,7 @@ const PROJECTS = [
     desc: "Scalable component library unifying design language across a product suite. Built for accessibility and performance first.",
     bg: "#f0f0f4",
     accent: "#3d2a6e",
+    url: "https://mkharentacar.ae/",
   },
 ];
 
@@ -69,13 +72,19 @@ function ProjectCard({ p, index }: { p: typeof PROJECTS[0]; index: number }) {
   return (
     <div
       ref={ref}
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "none" : "translateY(32px)",
         transition: `opacity 0.7s ease ${index * 0.12}s, transform 0.7s ease ${index * 0.12}s`,
       }}
+    >
+    <a
+      href={p.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{ display: "block", textDecoration: "none", color: "inherit" }}
     >
       {/* Thumbnail */}
       <div style={{
@@ -131,6 +140,7 @@ function ProjectCard({ p, index }: { p: typeof PROJECTS[0]; index: number }) {
         </div>
         <div style={{ fontSize: 12, color: "#bbb", flexShrink: 0, marginTop: 4, letterSpacing: "0.04em" }}>{p.year}</div>
       </div>
+    </a>
     </div>
   );
 }
