@@ -17,7 +17,7 @@ const PROJECTS = [
     title: "UX Research System",
     role: "UX Research · Design Lead",
     year: "2024",
-    desc: "A repeatable research framework for a B2B product team — from user interviews to a design system used across products.",
+    desc: "A repeatable research framework for a B2B product team - from user interviews to a design system used across products.",
     bg: "#f5f3f0",
     accent: "#2a5c3f",
   },

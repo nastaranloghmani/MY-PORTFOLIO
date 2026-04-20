@@ -11,7 +11,7 @@ const geist = Geist({
 export const metadata: Metadata = {
   metadataBase: new URL("https://nastaranloghmani.com"),
   title: {
-    default: "Nastaran Loghmani — UX/UI Developer & Product Designer",
+    default: "Nastaran Loghmani - UX/UI Developer & Product Designer",
     template: "%s | Nastaran Loghmani",
   },
   description:
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://nastaranloghmani.com",
-    title: "Nastaran Loghmani — UX/UI Developer & Product Designer",
+    title: "Nastaran Loghmani - UX/UI Developer & Product Designer",
     description:
       "UX/UI Developer and product designer building AI-driven digital experiences.",
     siteName: "Nastaran Loghmani Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nastaran Loghmani — UX/UI Developer & Product Designer",
+    title: "Nastaran Loghmani - UX/UI Developer & Product Designer",
     description:
       "UX/UI Developer and product designer building AI-driven digital experiences.",
   },

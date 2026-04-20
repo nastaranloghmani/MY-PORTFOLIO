@@ -84,7 +84,7 @@ export default function Experience() {
                 ["Data Research",   "User behavior analysis, market investigation, turning data into design decisions."],
                 ["UX/UI Design",    "From research to wireframes to high-fidelity interfaces across real products."],
                 ["Frontend Build",  "Shipping production-ready code. The design and the build are one process."],
-                ["Vibe Coding",     "Rapid AI-assisted prototyping — translating ideas into working interfaces fast."],
+                ["Vibe Coding",     "Rapid AI-assisted prototyping - translating ideas into working interfaces fast."],
               ].map(([title, desc]) => (
                 <div key={title} style={{ paddingLeft: 16, borderLeft: "2px solid #e8e8e8" }}>
                   <div style={{ fontSize: 13, fontWeight: 500, color: "#0f0f0f", marginBottom: 4 }}>{title}</div>

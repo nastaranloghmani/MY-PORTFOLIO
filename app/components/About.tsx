@@ -73,13 +73,13 @@ export default function About() {
             transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
           }}>
             <p style={{ fontSize: "clamp(1.2rem, 2vw, 1.45rem)", fontWeight: 400, lineHeight: 1.55, letterSpacing: "-0.01em", color: "#0f0f0f", margin: "0 0 32px" }}>
-              I'm a UX/UI developer who doesn't separate design from code — they're the same thing.
+              I'm a UX/UI developer who doesn't separate design from code - they're the same thing.
             </p>
             <p style={{ fontSize: 15, color: "#555", lineHeight: 1.7, margin: "0 0 24px" }}>
-              I work across research, design, and frontend development. Not because I have to — because I think the best products come from people who understand all three.
+              I work across research, design, and frontend development. Not because I have to - because I think the best products come from people who understand all three.
             </p>
             <p style={{ fontSize: 15, color: "#555", lineHeight: 1.7, margin: "0 0 40px" }}>
-              At MK Innovations in Dubai, I've been doing exactly that — investigating user behavior, translating it into design decisions, and shipping the result.
+              At MK Innovations in Dubai, I've been doing exactly that - investigating user behavior, translating it into design decisions, and shipping the result.
             </p>
 
             {/* Personal info block */}
