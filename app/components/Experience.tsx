@@ -67,7 +67,10 @@ export default function Experience() {
             <h3 style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", fontWeight: 500, letterSpacing: "-0.02em", color: "#0f0f0f", margin: "0 0 8px" }}>
               UX/UI Developer
             </h3>
-            <div style={{ fontSize: 16, color: "#1a4f6e", marginBottom: 4, fontWeight: 500 }}>MK Innovations</div>
+            <a href="https://mkinnovations.ae/" target="_blank" rel="noopener noreferrer" style={{ fontSize: 16, color: "#1a4f6e", marginBottom: 4, fontWeight: 500, textDecoration: "none", display: "block" }}
+              onMouseEnter={e => (e.currentTarget.style.textDecoration = "underline")}
+              onMouseLeave={e => (e.currentTarget.style.textDecoration = "none")}
+            >MK Innovations</a>
             <div style={{ fontSize: 14, color: "#888", marginBottom: 32 }}>Dubai, UAE · Sep 2025 - Present</div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e" }} />
